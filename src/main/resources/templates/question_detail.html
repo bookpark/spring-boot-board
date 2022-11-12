@@ -1,13 +1,5 @@
-<!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-    <link rel="stylesheet" type="text/css" th:href="@{/style.css}">
-    <link rel="stylesheet" type="text/css" th:href="@{/bootstrap.min.css}">
-</head>
-<body>
-<div class="container my-3">
+<html layout:decorate="~{layout}">
+<div layout:fragment="content" class="container my-3">
     <!-- 질문 제목 -->
     <h2 class="border-bottom py-2" th:text="${question.subject}"></h2>
     <!-- 질문 내용 -->
@@ -41,5 +33,4 @@
         <input class="btn btn-primary my-2" type="submit" value="답 변 등 록">
     </form>
 </div>
-</body>
 </html>
