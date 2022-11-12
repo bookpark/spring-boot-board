@@ -12,25 +12,26 @@ import org.springframework.web.context.annotation.RequestScope;
 
 import java.util.List;
 
+@RequestMapping("/question")
 @RequiredArgsConstructor
 @Controller
 public class QuestionController {
 
     private final QuestionService questionService;
 
-    @RequestMapping("/question/list")
+    @RequestMapping("/list")
     public String list(Model model) {
         List<Question> questionList = this.questionService.getList();
         model.addAttribute("questionList", questionList);
         return "question_list";
     }
 
-    @RequestMapping("/")
+    @RequestMapping("")
     public String root() {
         return "redirect:/question/list";
     }
 
-    @RequestMapping("/question/detail/{id}")
+    @RequestMapping("/detail/{id}")
     public String detail(Model model, @PathVariable("id") Integer id) {
         Question question = this.questionService.getQuestion(id);
         model.addAttribute("question", question);
