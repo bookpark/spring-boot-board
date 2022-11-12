@@ -1,6 +1,7 @@
 package mini.springboard.controller;
 
 import lombok.RequiredArgsConstructor;
+import mini.springboard.domain.AnswerForm;
 import mini.springboard.domain.Question;
 import mini.springboard.domain.QuestionForm;
 import mini.springboard.repository.QuestionRepository;
@@ -34,7 +35,7 @@ public class QuestionController {
     }
 
     @RequestMapping("/detail/{id}")
-    public String detail(Model model, @PathVariable("id") Integer id) {
+    public String detail(Model model, @PathVariable("id") Integer id, AnswerForm answerForm) {
         Question question = this.questionService.getQuestion(id);
         model.addAttribute("question", question);
         return "question_detail";
