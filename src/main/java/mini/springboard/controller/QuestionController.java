@@ -3,6 +3,7 @@ package mini.springboard.controller;
 import lombok.RequiredArgsConstructor;
 import mini.springboard.domain.Question;
 import mini.springboard.repository.QuestionRepository;
+import mini.springboard.service.QuestionService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -13,11 +14,11 @@ import java.util.List;
 @Controller
 public class QuestionController {
 
-    private final QuestionRepository questionRepository;
+    private final QuestionService questionService;
 
     @RequestMapping("/question/list")
     public String list(Model model) {
-        List<Question> questionList = this.questionRepository.findAll();
+        List<Question> questionList = this.questionService.getList();
         model.addAttribute("questionList", questionList);
         return "question_list";
     }
