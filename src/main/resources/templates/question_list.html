@@ -2,25 +2,32 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>질문 목록</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/bootstrap.min.css}">
 </head>
 <body>
-<table>
-    <thead>
-    <tr>
-        <th>제 목</th>
-        <th>작 성 일 시</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr th:each="question, index : ${questionList}">
-        <td>
-            <!--문자열과 객체의 값을 더할 떄는 ||로 감싸주어야 함-->
-            <a th:href="@{|/question/detail/${question.id}|}" th:text="${question.subject}"></a>
-        </td>
-        <td th:text="${question.createDate}"></td>
-    </tr>
-    </tbody>
-</table>
+<div class="container my-3">
+    <table class="table">
+        <thead class="table-dark">
+        <tr>
+            <th>번 호</th>
+            <th>제 목</th>
+            <th>작 성 일 시</th>
+        </tr>
+        </thead>
+        <tbody>
+        <!--번호를 사용하기 위해 loop.count 사용-->
+        <tr th:each="question, loop : ${questionList}">
+            <td th:text="${loop.count}"></td>
+            <td>
+                <!--문자열과 객체의 값을 더할 떄는 ||로 감싸주어야 함-->
+                <a th:href="@{|/question/detail/${question.id}|}" th:text="${question.subject}"></a>
+            </td>
+            <!--보기 좋은 날짜 출력을 위해 #temporals.format(날짜객체, 날짜포맷) 유틸 사용-->
+            <td th:text="${#temporals.format(question.createDate, 'yyyy-MM-dd HH:mm')}"></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
 </body>
 </html>
