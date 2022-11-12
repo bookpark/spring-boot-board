@@ -14,8 +14,9 @@
     </tr>
     </thead>
     <tbody>
-    <tr th:each="question : ${questionList}">
-        <td th:text="${question.subject}"></td>
+    <tr th:each="question, index : ${questionList}">
+        <!--문자열과 객체의 값을 더할 떄는 ||로 감싸주어야 함-->
+        <td th:href="@{|/question/detail/${question.id}|}" th:text="${question.subject}"></td>
         <td th:text="${question.createDate}"></td>
     </tr>
     </tbody>
