@@ -1,6 +1,5 @@
 <!DOCTYPE html>
-
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
@@ -15,8 +14,10 @@
     </thead>
     <tbody>
     <tr th:each="question, index : ${questionList}">
-        <!--문자열과 객체의 값을 더할 떄는 ||로 감싸주어야 함-->
-        <td th:href="@{|/question/detail/${question.id}|}" th:text="${question.subject}"></td>
+        <td>
+            <!--문자열과 객체의 값을 더할 떄는 ||로 감싸주어야 함-->
+            <a th:href="@{|/question/detail/${question.id}|}" th:text="${question.subject}"></a>
+        </td>
         <td th:text="${question.createDate}"></td>
     </tr>
     </tbody>

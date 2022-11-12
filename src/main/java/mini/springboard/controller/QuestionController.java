@@ -6,7 +6,9 @@ import mini.springboard.repository.QuestionRepository;
 import mini.springboard.service.QuestionService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.context.annotation.RequestScope;
 
 import java.util.List;
 
@@ -26,5 +28,10 @@ public class QuestionController {
     @RequestMapping("/")
     public String root() {
         return "redirect:/question/list";
+    }
+
+    @RequestMapping("/question/detail/{id}")
+    public String detail(Model model, @PathVariable("id") Integer id) {
+        return "question_detail";
     }
 }
