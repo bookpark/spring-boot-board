@@ -4,6 +4,7 @@ import mini.springboard.domain.Answer;
 import mini.springboard.domain.Question;
 import mini.springboard.repository.AnswerRepository;
 import mini.springboard.repository.QuestionRepository;
+import mini.springboard.service.QuestionService;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,7 +24,9 @@ class SpringBoardApplicationTests {
     @Autowired
     private AnswerRepository answerRepository;
 
-    @Transactional
+    @Autowired
+    private QuestionService questionService;
+
     @Test
     void testJpa() {
         // 데이터 저장하기
@@ -101,13 +104,20 @@ class SpringBoardApplicationTests {
 //		Assertions.assertEquals(2, a.getQuestion().getId());
 
         // 질문에 달린 답변 찾기
-        Optional<Question> oq = this.questionRepository.findById(2);
-        Assertions.assertTrue(oq.isPresent());
-        Question q = oq.get();
+//        Optional<Question> oq = this.questionRepository.findById(2);
+//        Assertions.assertTrue(oq.isPresent());
+//        Question q = oq.get();
+//
+//        List<Answer> answerList = q.getAnswerList();
+//
+//        Assertions.assertEquals(1, answerList.size());
+//        Assertions.assertEquals("네 자동으로 생성됩니다.", answerList.get(0).getContent());
 
-        List<Answer> answerList = q.getAnswerList();
-
-        Assertions.assertEquals(1, answerList.size());
-        Assertions.assertEquals("네 자동으로 생성됩니다.", answerList.get(0).getContent());
+        // 대량의 테스트 데이터 생성
+        for (int i = 1; i <= 300; i++) {
+            String subject = String.format("테스트 데이터입니다:[%03d]", i);
+            String content = "내 용 무";
+            this.questionService.create(subject, content);
+        }
     }
 }
