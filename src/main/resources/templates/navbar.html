@@ -9,7 +9,8 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
-          <a th:href="@{/user/login}" class="nav-link">로 그 인</a>
+          <a th:href="@{/user/login}" class="nav-link" sec:authorize="isAnonymous()">로 그 인</a>
+          <a th:href="@{/user/logout}" class="nav-link" sec:authorize="isAuthenticated()">로 그 아 웃</a>
         </li>
         <li class="nav-item">
           <a th:href="@{/user/signup}" class="nav-link">회 원 가 입</a>
