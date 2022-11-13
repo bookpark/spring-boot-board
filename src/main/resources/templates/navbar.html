@@ -13,7 +13,7 @@
           <a th:href="@{/user/logout}" class="nav-link" sec:authorize="isAuthenticated()">로 그 아 웃</a>
         </li>
         <li class="nav-item">
-          <a th:href="@{/user/signup}" class="nav-link">회 원 가 입</a>
+          <a th:href="@{/user/signup}" class="nav-link" sec:authorize="isAnonymous()">회 원 가 입</a>
         </li>
       </ul>
     </div>
