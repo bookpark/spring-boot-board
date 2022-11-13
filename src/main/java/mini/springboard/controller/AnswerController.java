@@ -7,6 +7,7 @@ import mini.springboard.domain.SiteUser;
 import mini.springboard.service.AnswerService;
 import mini.springboard.service.QuestionService;
 import mini.springboard.service.UserService;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -33,6 +34,7 @@ public class AnswerController {
 //        return String.format("redirect:/question/detail/%s", id);
 //    }
 
+    @PreAuthorize("isAuthenticated()")
     @PostMapping("/create/{id}")
     public String createAnswer(Model model, @PathVariable("id") Integer id,
                                @Valid AnswerForm answerForm, BindingResult bindingResult, Principal principal) {
