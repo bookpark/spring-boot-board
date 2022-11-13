@@ -21,6 +21,26 @@
         </tr>
         </tbody>
     </table>
-    <a th:href="@{/question/create}" class="btn btn-primary">질 문  등 록 하 기</a>
+    <!--페 이 징 처 리  시 작 -->
+    <div th:if="${!paging.isEmpty()}">
+        <ul class="pagination justify-content-center">
+            <li class="page-item" th:classappend="${!paging.hasPrevious} ? 'disabled'">
+                <a th:href="@{|?page=${paging.number-1}|}" class="page-link">
+                    <span>이 전</span>
+                </a>
+            </li>
+            <li class="page-item" th:each="page : ${#numbers.sequence(0, paging.totalPages-1)}"
+                th:classappend="${page == paging.number} ? 'active'">
+                <a th:href="@{|?page=${page}|}" th:text="${page}" class="page-link"></a>
+            </li>
+            <li class="page-item" th:classappend="${!paging.hasNext} ? 'disabled'">
+                <a th:href="@{|?page=${paging.number+1}|}" class="page-link">
+                    <span>다 음</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+    <!-- 페 이 징 처 리  끝-->
+    <a th:href="@{/question/create}" class="btn btn-primary">질 문 등 록 하 기</a>
 </div>
 </html>
