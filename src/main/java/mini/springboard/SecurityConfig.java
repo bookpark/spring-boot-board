@@ -1,4 +1,4 @@
-package mini.springboard.config;
+package mini.springboard;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -27,7 +27,11 @@ public class SecurityConfig {
                 //  페이지를 제공하는 사이트와 동일한 경우 계속 사용 가능
                 .headers().addHeaderWriter(new XFrameOptionsHeaderWriter(
                         XFrameOptionsHeaderWriter.XFrameOptionsMode.SAMEORIGIN
-                ));
+                ))
+                .and()
+                .formLogin()
+                .loginPage("/user/login")
+                .defaultSuccessUrl("/question");
         return http.build();
     }
 
